@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectManager.DataAccess.Repository
+namespace ProjectManager.DataAccess
 {
     internal class TaskRepository : ITaskRepository
     {
         private readonly IProjectManagerRepository<Task> TaskRepo;
+        public TaskRepository() : this(new ProjectManagerRepository<Task>()) { }
         public TaskRepository(IProjectManagerRepository<Task> TaskRepo)
         {
             this.TaskRepo = TaskRepo;

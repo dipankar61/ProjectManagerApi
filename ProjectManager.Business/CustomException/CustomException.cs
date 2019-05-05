@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjectManager.Business
 {
-    public class Class1
+    public class CustomException : Exception
     {
+        private string exMsg;
+        public string ExceptionMsg { get => exMsg; set => exMsg = value; }
+
+      
     }
 }

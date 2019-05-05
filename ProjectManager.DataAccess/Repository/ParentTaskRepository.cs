@@ -9,6 +9,7 @@ namespace ProjectManager.DataAccess
     internal class ParentTaskRepository : IParentTaskRepository
     {
         private readonly IProjectManagerRepository<ParentTask> pTaskRepo;
+        public ParentTaskRepository() : this(new ProjectManagerRepository<ParentTask>()) { }
         public ParentTaskRepository(IProjectManagerRepository<ParentTask> pTaskRepo)
         {
             this.pTaskRepo = pTaskRepo;

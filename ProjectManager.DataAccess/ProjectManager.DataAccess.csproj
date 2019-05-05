@@ -113,6 +113,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessController.cs" />
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\ParentTask.cs" />
     <Compile Include="Entity\Project.cs" />

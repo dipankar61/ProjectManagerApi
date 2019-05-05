@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectManager.Business.ViewModel
+namespace ProjectManager.Business
 {
     public class TaskViewModel
     {

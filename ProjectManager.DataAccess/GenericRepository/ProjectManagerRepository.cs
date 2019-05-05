@@ -11,7 +11,8 @@ namespace ProjectManager.DataAccess
     {
         private readonly ProjectmanagerContext pmManagerContext;
         private DbSet<T> entities;
-       
+        public ProjectManagerRepository() : this(new ProjectmanagerContext()) { }
+
         public ProjectManagerRepository(ProjectmanagerContext pmManagerContext)
         {
             this.pmManagerContext = pmManagerContext;

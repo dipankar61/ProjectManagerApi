@@ -41,9 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BusinessController.cs" />
+    <Compile Include="CustomException\CustomException.cs" />
     <Compile Include="Handler\ParentTaskhandler.cs" />
+    <Compile Include="Handler\ProjectHandler.cs" />
+    <Compile Include="Handler\TaskHandler.cs" />
+    <Compile Include="Handler\UserHandler.cs" />
     <Compile Include="Interface\IParentTaskHandler.cs" />
+    <Compile Include="Interface\IProjectHandlercs.cs" />
+    <Compile Include="Interface\ITaskHandler.cs" />
+    <Compile Include="Interface\IUserHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ParentTaskViewModel.cs" />
     <Compile Include="ViewModel\ProjectViewModel.cs" />
@@ -56,5 +63,6 @@
       <Name>ProjectManager.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

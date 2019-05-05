@@ -9,6 +9,7 @@ namespace ProjectManager.DataAccess
     internal class UserRepository:IUserRepository
     {
         private readonly IProjectManagerRepository<User> UserRepo;
+        public UserRepository() : this(new ProjectManagerRepository<User>()) { }
         public UserRepository(IProjectManagerRepository<User> UserRepo)
         {
             this.UserRepo = UserRepo;

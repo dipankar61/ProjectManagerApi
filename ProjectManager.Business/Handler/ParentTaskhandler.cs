@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using ProjectManager.DataAccess;
 
-namespace ProjectManager.Business.Handler
+namespace ProjectManager.Business
 {
     internal class ParentTaskhandler : IParentTaskHandler
     {
         private readonly IParentTaskRepository pTaskrepo;
+        
         internal ParentTaskhandler(IParentTaskRepository pTaskrepo)
         {
             this.pTaskrepo = pTaskrepo;
+            
         }
         public void AddParentTask(ParentTaskViewModel pTaskVM)
         {
@@ -22,6 +24,12 @@ namespace ProjectManager.Business.Handler
                     TaskName = pTaskVM.TaskName
                 };
                 pTaskrepo.AddParentTask(pTask);
+            }
+            else
+            {
+                var customException = new CustomException();
+                customException.ExceptionMsg = "Parent task with same name is already exist in the system";
+                throw customException;
             }
         }
 
