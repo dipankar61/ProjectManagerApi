@@ -24,12 +24,16 @@ namespace ProjectManager.DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<ParentTask>().HasKey(e => e.ParentId);
+            modelBuilder.Entity<ParentTask>().ToTable("ParentTask", "dbo");
             modelBuilder.Entity<ParentTask>().Property(e => e.ParentId).HasColumnName("Parent_ID");
             modelBuilder.Entity<ParentTask>().Property(e => e.TaskName)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+            modelBuilder.Entity<Project>().HasKey(e => e.ProjectId);
+            modelBuilder.Entity<Project>().ToTable("Project", "dbo");
             modelBuilder.Entity<Project>().Property(e => e.ProjectId).HasColumnName("Project_ID");
             modelBuilder.Entity<Project>().Property(e => e.ProjectName)
                     .IsRequired()
@@ -39,10 +43,13 @@ namespace ProjectManager.DataAccess
             modelBuilder.Entity<Project>().Property(e => e.StartDate).HasColumnType("datetime");
             modelBuilder.Entity<Project>().Property(e => e.UserId).HasColumnName("User_ID");
 
+            modelBuilder.Entity<Task>().HasKey(e => e.TaskId);
+            modelBuilder.Entity<Task>().ToTable("Task", "dbo");
             modelBuilder.Entity<Task>().Property(e => e.TaskId).HasColumnName("Task_ID");
             modelBuilder.Entity<Task>().Property(e => e.EndDate)
                     .HasColumnName("End_Date")
                     .HasColumnType("datetime");
+            modelBuilder.Entity<Task>().Property(e => e.UserId).HasColumnName("User_ID");
             modelBuilder.Entity<Task>().Property(e => e.ParentId).HasColumnName("Parent_ID");
             modelBuilder.Entity<Task>().Property(e => e.ProjectId).HasColumnName("Project_ID");
             modelBuilder.Entity<Task>().Property(e => e.StartDate)
@@ -55,6 +62,9 @@ namespace ProjectManager.DataAccess
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
+
+            modelBuilder.Entity<User>().HasKey(e => e.UserId);
+            modelBuilder.Entity<User>().ToTable("User", "dbo");
             modelBuilder.Entity<User>().Property(e => e.UserId).HasColumnName("User_ID");
             modelBuilder.Entity<User>().Property(e => e.EmployeeId).HasColumnName("Employee_ID");
             modelBuilder.Entity<User>().Property(e => e.FirstName)

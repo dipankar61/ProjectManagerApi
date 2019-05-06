@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ProjectManager.DataAccess;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("ProjectManager.UnitTest")]
 
 namespace ProjectManager.Business
 {

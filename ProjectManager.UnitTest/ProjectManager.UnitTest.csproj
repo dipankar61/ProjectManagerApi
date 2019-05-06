@@ -72,12 +72,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ParentTaskrepository_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectManager.Business\ProjectManager.Business.csproj">
+      <Project>{5eba0956-cf08-4417-909b-a0f03e128592}</Project>
+      <Name>ProjectManager.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectManager.DataAccess\ProjectManager.DataAccess.csproj">
+      <Project>{ed98f731-81cb-4668-9076-ba074596bd59}</Project>
+      <Name>ProjectManager.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

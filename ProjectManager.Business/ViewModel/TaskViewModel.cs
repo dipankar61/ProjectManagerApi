@@ -17,7 +17,7 @@ namespace ProjectManager.Business
         public int UserId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int? ParentTaskId { get; set; }
+        
         public string ParentTaskname { get; set; }
         
         public string UserName { get; set; }

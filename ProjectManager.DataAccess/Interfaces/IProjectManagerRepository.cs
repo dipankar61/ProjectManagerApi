@@ -10,7 +10,7 @@ namespace ProjectManager.DataAccess
     public interface IProjectManagerRepository<T>: IDisposable where T : BaseEntity
     {
 
-        T GetById(Int64 id);
+        
         T GetById(int id);
         DbSet<T> GetEntities();
 
@@ -19,6 +19,7 @@ namespace ProjectManager.DataAccess
         void Delete(T entity);
 
         void Update(T entity);
+        void SaveChange();
         IQueryable<T> All { get; }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ProjectManager.DataAccess;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("ProjectManager.UnitTest")]
 
 namespace ProjectManager.Business
 {
@@ -54,14 +56,14 @@ namespace ProjectManager.Business
 
         public void UpdateUser(UserViewModel user)
         {
-            if (!IsEmployeeIdExist(user))
+            bool isAllowEdit = false;
+            var us = userRepo.GetUserById(user.UserId);
+            isAllowEdit = (us.EmployeeId == user.EmployeeId) ? true : !IsEmployeeIdExist(user);
+            if (isAllowEdit)
             {
-                var us = userRepo.GetUserById(user.UserId);
                 us.FirstName = user.FirstName;
                 us.LastName = user.LastName;
                 us.EmployeeId = user.EmployeeId;
-                us.UserId = user.UserId;
-               
                 userRepo.UpdateUser(us);
             }
             else

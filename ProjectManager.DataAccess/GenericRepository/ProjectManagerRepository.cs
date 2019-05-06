@@ -48,17 +48,20 @@ namespace ProjectManager.DataAccess
         public void Create(T entity)
         {
             this.Entities.Add(entity);
+           
 
         }
 
         public void Delete(T entity)
         {
             this.Entities.Remove(entity);
+           
         }
 
         public void Update(T entity)
         {
             pmManagerContext.Entry(entity).State = EntityState.Modified;
+           
         }
         public DbSet<T> GetEntities()
         {

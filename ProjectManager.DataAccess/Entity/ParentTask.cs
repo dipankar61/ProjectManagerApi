@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectManager.DataAccess
 {
@@ -9,7 +10,7 @@ namespace ProjectManager.DataAccess
         {
             Task = new HashSet<Task>();
         }
-
+        
         public int ParentId { get; set; }
         public string TaskName { get; set; }
 

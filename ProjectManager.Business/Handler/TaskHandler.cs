@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ProjectManager.DataAccess;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("ProjectManager.UnitTest")]
 
 
 namespace ProjectManager.Business
@@ -16,7 +18,7 @@ namespace ProjectManager.Business
         }
         public void AddTask(TaskViewModel taskViewModel)
         {
-            if(!isProjectNameExist(taskViewModel))
+            if(!IsTaskNameExist(taskViewModel))
             {
                 var task = new Task()
                 {
@@ -33,7 +35,7 @@ namespace ProjectManager.Business
             else
             {
                 var customException = new CustomException();
-                customException.ExceptionMsg = "task name is already exist in the system";
+                customException.ExceptionMsg = "Task name is already exist in the system";
                 throw customException;
             }
 
@@ -46,6 +48,7 @@ namespace ProjectManager.Business
             {
                 var taskvm = new TaskViewModel()
                 {
+                    TaskId=item.TaskId,
                     TaskName = item.TaskName,
                     StartDate = item.StartDate,
                     EndDate = item.EndDate,
@@ -55,7 +58,8 @@ namespace ProjectManager.Business
                     ProjectId = item.ProjectId,
                     UserName = (item.User.FirstName + " " + item.User.LastName),
                     ProjectName = item.Project.ProjectName,
-                    Status=item.Status
+                    Status=item.Status,
+                    ParentTaskname=item.Parent.TaskName
                 };
                 taskList.Add(taskvm);
             });
@@ -67,6 +71,7 @@ namespace ProjectManager.Business
             var task= taskrepo.GetTaskById(id);
             var taskvm = new TaskViewModel()
             {
+                TaskId = task.TaskId,
                 TaskName = task.TaskName,
                 StartDate = task.StartDate,
                 EndDate = task.EndDate,
@@ -74,18 +79,23 @@ namespace ProjectManager.Business
                 Priority = task.Priority,
                 UserId = task.UserId,
                 ProjectId = task.ProjectId,
+                Status = task.Status,
                 UserName = (task.User.FirstName + " " + task.User.LastName),
-                ProjectName = task.Project.ProjectName
+                ProjectName = task.Project.ProjectName,
+                ParentTaskname = task.Parent.TaskName
             };
             return taskvm;
         }
 
         public void UpdateTask(TaskViewModel taskViewModel)
         {
-            
-            if(!isProjectNameExist(taskViewModel))
+            bool isAllowEdit = false;
+            var task = taskrepo.GetTaskById(taskViewModel.TaskId);
+            isAllowEdit = (task.TaskName == taskViewModel.TaskName) ? true : !IsTaskNameExist(taskViewModel);
+
+            if (isAllowEdit)
             {
-                var task = taskrepo.GetTaskById(taskViewModel.TaskId);
+                
                 task.TaskName = taskViewModel.TaskName;
                 task.StartDate = taskViewModel.StartDate;
                 task.EndDate = taskViewModel.EndDate;
@@ -106,7 +116,7 @@ namespace ProjectManager.Business
 
 
         }
-        private bool isProjectNameExist(TaskViewModel tvm)
+        private bool IsTaskNameExist(TaskViewModel tvm)
         {
             return taskrepo.GetAllTask().Any(t => t.TaskName == tvm.TaskName);
         }

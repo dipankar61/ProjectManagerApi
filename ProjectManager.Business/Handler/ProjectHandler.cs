@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ProjectManager.DataAccess;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("ProjectManager.UnitTest")]
 
 namespace ProjectManager.Business
 {
@@ -17,7 +19,7 @@ namespace ProjectManager.Business
         }
         public void AddProject(ProjectViewModel pjVm)
         {
-            if (!isProjectNameExist(pjVm))
+            if (!IsProjectNameExist(pjVm))
             {
                 var proj = new Project()
                 {
@@ -66,9 +68,11 @@ namespace ProjectManager.Business
 
         public void UpdateProject(ProjectViewModel pjVm)
         {
-            if (!isProjectNameExist(pjVm))
+            bool isAllowEdit = false;
+            var prj = projRepo.GetProjectById(pjVm.ProjectId);
+            isAllowEdit = (prj.ProjectName == pjVm.ProjectName) ? true : !IsProjectNameExist(pjVm);
+            if (isAllowEdit)
             {
-                var prj = projRepo.GetProjectById(pjVm.ProjectId);
                 prj.ProjectName = pjVm.ProjectName;
                 prj.StartDate = pjVm.StartDate.Value;
                 prj.EndDate = pjVm.EndDate.Value;
@@ -84,7 +88,7 @@ namespace ProjectManager.Business
                 throw customException;
             }
         }
-        private bool isProjectNameExist(ProjectViewModel pjVm)
+        private bool IsProjectNameExist(ProjectViewModel pjVm)
         {
             return projRepo.GetAllProject().Any(p => p.ProjectName == pjVm.ProjectName);
         }

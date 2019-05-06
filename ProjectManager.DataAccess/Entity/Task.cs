@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectManager.DataAccess
 {
     public partial class Task: BaseEntity
     {
+        
         public int TaskId { get; set; }
         public string TaskName { get; set; }
         public string Status { get; set; }

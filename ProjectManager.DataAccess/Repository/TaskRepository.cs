@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("ProjectManager.UnitTest")]
 
 namespace ProjectManager.DataAccess
 {
@@ -17,6 +19,7 @@ namespace ProjectManager.DataAccess
         public void AddTask(Task task)
         {
             TaskRepo.Create(task);
+            TaskRepo.SaveChange();
         }
 
         public IQueryable<Task> GetAllTask()
@@ -27,6 +30,7 @@ namespace ProjectManager.DataAccess
         public void UpdateTask(Task task)
         {
             TaskRepo.Update(task);
+            TaskRepo.SaveChange();
         }
         public Task GetTaskById(int Id)
         {
