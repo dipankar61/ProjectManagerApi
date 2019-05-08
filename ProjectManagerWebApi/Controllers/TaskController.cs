@@ -69,7 +69,7 @@ namespace ProjectManagerWebApi.Controllers
                 return InternalServerError(ex);
             }
         }
-        public IHttpActionResult PutUpdateProject(TaskViewModel task)
+        public IHttpActionResult PutUpdateTask(TaskViewModel task)
         {
             try
             {
