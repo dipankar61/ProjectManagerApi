@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace ProjectManager.DataAccess
 {
-    public interface IProjectManagerRepository<T>: IDisposable where T : BaseEntity
+    public interface IProjectManagerRepository<T> where T : BaseEntity
     {
 
         

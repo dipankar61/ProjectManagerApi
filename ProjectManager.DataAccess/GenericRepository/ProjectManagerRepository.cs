@@ -72,10 +72,7 @@ namespace ProjectManager.DataAccess
             pmManagerContext.SaveChanges();
         }
 
-        public void Dispose()
-        {
-            pmManagerContext.Dispose();
-        }
+       
 
         
     }
