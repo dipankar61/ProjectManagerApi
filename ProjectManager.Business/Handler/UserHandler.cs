@@ -73,9 +73,9 @@ namespace ProjectManager.Business
                 throw customException;
             }
         }
-        public void DeleteUser(UserViewModel user)
+        public void DeleteUser(int Id)
         {
-            var us = userRepo.GetUserById(user.UserId);
+            var us = userRepo.GetUserById(Id);
             
             userRepo.DeleteUser(us);
 

@@ -11,7 +11,7 @@ namespace ProjectManager.Business
         void AddUser(UserViewModel user);
         void UpdateUser(UserViewModel user);
         List<UserViewModel> GetAllUsers();
-        void DeleteUser(UserViewModel user);
+        void DeleteUser(int id);
 
     }
 }

@@ -135,7 +135,7 @@ namespace ProjectManager.UnitTest.BusinessHandler
             mockRepo.Setup(p => p.GetUserById(usVm.UserId)).Returns(us1);
             mockRepo.Setup(p => p.DeleteUser(us1));
             var handler = new UserHandler(mockRepo.Object);
-            handler.DeleteUser(usVm);
+            handler.DeleteUser(usVm.UserId);
             mockRepo.Verify(mock => mock.GetUserById(usVm.UserId), Times.Once());
             mockRepo.Verify(mock => mock.DeleteUser(us1), Times.Once());
         }

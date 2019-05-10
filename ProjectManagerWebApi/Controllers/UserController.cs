@@ -78,14 +78,14 @@ namespace ProjectManagerWebApi.Controllers
         }
 
         
-        public IHttpActionResult Delete(UserViewModel user)
+        public IHttpActionResult Delete(int Id)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest("Invalid data.");
 
-                userHandler.DeleteUser(user);
+                userHandler.DeleteUser(Id);
                 return Ok();
 
             }
