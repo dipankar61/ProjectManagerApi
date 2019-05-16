@@ -74,9 +74,9 @@ namespace ProjectManager.Business
             if (isAllowEdit)
             {
                 prj.ProjectName = pjVm.ProjectName;
-                prj.StartDate = pjVm.StartDate.Value;
-                prj.EndDate = pjVm.EndDate.Value;
-                prj.Priority = pjVm.Priority.Value;
+                prj.StartDate = pjVm.StartDate;
+                prj.EndDate = pjVm.EndDate;
+                prj.Priority = pjVm.Priority;
                 prj.UserId = pjVm.UserId;
 
                 projRepo.UpdateProject(prj);
