@@ -48,7 +48,7 @@ namespace ProjectManager.Business
             {
                 var taskvm = new TaskViewModel()
                 {
-                    TaskId=item.TaskId,
+                    TaskId = item.TaskId,
                     TaskName = item.TaskName,
                     StartDate = item.StartDate,
                     EndDate = item.EndDate,
@@ -58,8 +58,8 @@ namespace ProjectManager.Business
                     ProjectId = item.ProjectId,
                     UserName = (item.User.FirstName + " " + item.User.LastName),
                     ProjectName = item.Project.ProjectName,
-                    Status=item.Status,
-                    ParentTaskname=item.Parent.TaskName
+                    Status = item.Status,
+                    ParentTaskname = item.Parent != null ? item.Parent.TaskName : ""
                 };
                 taskList.Add(taskvm);
             });
@@ -82,7 +82,7 @@ namespace ProjectManager.Business
                 Status = task.Status,
                 UserName = (task.User.FirstName + " " + task.User.LastName),
                 ProjectName = task.Project.ProjectName,
-                ParentTaskname = task.Parent.TaskName
+                ParentTaskname = task.Parent!=null?task.Parent.TaskName:""
             };
             return taskvm;
         }
